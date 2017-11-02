@@ -8,7 +8,7 @@ $.extend(Header.prototype,{
 		this.bindEvents()
 	},
 	createdom(){
-		var html = new EJS({url:'../../views/header.ejs'}).render({
+		var html = new EJS({url:'views/header.ejs'}).render({
 			username:'admin',
 			isLogin:false,
 			signUp:false

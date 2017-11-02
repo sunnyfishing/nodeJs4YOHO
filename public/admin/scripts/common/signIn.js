@@ -8,7 +8,7 @@ $.extend(signIn.prototype ,{
 		this.bindEvents()
 	},
 	createDom(){
-		var html = new EJS({url:'/views/signIn.ejs'}).render({});
+		var html = new EJS({url:'/admin/views/signIn.ejs'}).render({});
 		this.con.append(html);
 		this.register=$('.register')
 		this.textregister=$('.hearder_register');
@@ -19,7 +19,7 @@ $.extend(signIn.prototype ,{
 	},
 	toRegister(){
 		this.con.find('.signin').remove();
-		var html = new EJS({url:'../../views/header.ejs'}).render({
+		var html = new EJS({url:'/admin/views/header.ejs'}).render({
 			username:'admin',
 			isLogin:false,
 			signUp:true

@@ -3,7 +3,6 @@ var Page = function(){
 }
 $.extend(Page.prototype,{
 	init(){
-		console.log(1)
 		this.createheader();
 		this.createsignIn();
 	},

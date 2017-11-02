@@ -25,11 +25,31 @@
 .form-group{
 	position: relative;
 }
-.form-group span{
+.signup .form-group{
+	margin-bottom: 0;
+}
+.signup .form-group input{
+	margin-top: 0;
+}
+.form-group span:first-child{
 	position: absolute;
 	left: 10px;
 	top: 20px;
 	color: #999;
+}
+.signup .form-group span:first-child{
+	top: 10px;
+}
+.signup .form-group span:nth-child(3){
+	color: #414141;
+	display: none;
+}
+.signup .form-group span:nth-child(4){
+	margin:5px 0;
+	color: #D9534F;
+	text-align: left;
+	font-size: 12px;
+	visibility: hidden;
 }
 .signin .login{
 	margin-top: 20px;
