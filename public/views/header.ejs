@@ -1,0 +1,26 @@
+<nav class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" style="padding-top: 0;">
+        <img alt="YOHO有货" src="../images/logo.png" width="50">
+      </a>
+      <p class="navbar-brand" style="color: white;margin: 0;">后台管理系统</p>
+    </div>
+    <div class="collapse navbar-collapse" id="response-navbar">
+      <% if (!isLogin) { %>
+        <ul class="nav navbar-nav navbar-right">
+        	<% if(!signUp){ %>
+          	<li><a href="#" class="hearder_register">注册</a></li>
+          <% }else{ %>
+          	<li><a href="#" class="header_login">登录</a></li>
+          <% } %>
+        </ul>
+      <% } else { %>
+        <ul class="nav navbar-nav navbar-right">
+          <li>你好, <span id="js-username"><%= username %></span></li>
+          <li id="js-logout"><a href="#">注销</a></li> b
+        </ul>
+      <% } %>
+    </div>
+  </div>
+</nav>

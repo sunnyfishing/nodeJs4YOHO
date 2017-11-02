@@ -1,0 +1,65 @@
+.signin,.signup{
+	margin-top: 100px;
+}
+.bg,.form{
+	float: left;
+}
+.bg{
+	width: 800px;
+	height: 400px;
+	line-height: 400px;
+}
+.form{
+	width: 270px;
+	height: 400px;
+	border: solid 1px lightgray;
+	border-radius: 5px;
+	box-shadow: 0 0 8px 1px rgba(0,0,0,.2);
+	text-align: center;
+	padding: 10px 40px;
+}
+.form-horizontal input{
+	margin-top: 10px;
+	padding-left: 30px;
+}
+.form-group{
+	position: relative;
+}
+.form-group span{
+	position: absolute;
+	left: 10px;
+	top: 20px;
+	color: #999;
+}
+.signin .login{
+	margin-top: 20px;
+	width: 100%;
+	background: #414141;
+	color: white;
+}
+.signin .login:hover{
+	background: black;
+	color: white;
+}
+.signin .register{
+	width:100%;
+	margin-top: 20px;
+}
+.signin .form img{
+	margin-top: 10px;
+	width: 100%;
+}
+.signup .register{
+	margin-top: 20px;
+	width: 100%;
+	background: #414141;
+	color: white;
+}
+.signup .register:hover{
+	background: black;
+	color: white;
+}
+.signup .login{
+	width:100%;
+	margin-top: 20px;
+}
