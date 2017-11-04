@@ -11,7 +11,7 @@ const schema = new db.Schema({
 	},
 	phone:{
 		type:Number,
-		required:true
+		required:false
 	},
 	roles:{
 		type:String,

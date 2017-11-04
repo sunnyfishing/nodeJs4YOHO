@@ -18,6 +18,13 @@ app.use(cookieSession({
 	maxAge:1000*60*60*24
 }))
 
+//cookieSession
+app.use(cookieSession({
+	name:'session',
+	secret:'yoho',
+	maxAge:1000*60*60*24
+}))
+
 //使用路由
 app.use('/api',apiRoute)
 

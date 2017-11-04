@@ -43,23 +43,29 @@ $.extend(signUp.prototype ,{
 		$(e.target).next().hide().end().siblings('.help-block').css('visibility','hidden')
 	},
 	checkpassword(){
-		if(this.password.val().length<6||this.password.val().length>18){
-			this.password.next().show().attr('class','glyphicon glyphicon-remove form-control-feedback').css('color','#D9534F');
-			this.password.siblings('.help-block').css('visibility','visible')
-		}else{
-			this.password.next().show().attr('class','glyphicon glyphicon-ok form-control-feedback').css('color','#414141');
-			this.password.attr('state','1')
-			this.showablebutton()
+		var value = this.password.val();
+		if(value.trim()!=''){
+			if(value.length<6||value.length>18){
+				this.password.next().show().attr('class','glyphicon glyphicon-remove form-control-feedback').css('color','#D9534F');
+				this.password.siblings('.help-block').css('visibility','visible')
+			}else{
+				this.password.next().show().attr('class','glyphicon glyphicon-ok form-control-feedback').css('color','#414141');
+				this.password.attr('state','1')
+				this.showablebutton()
+			}
 		}
 	},
 	checkrepassword(){
-		if(this.password.val()==this.repassword.val()){
-			this.repassword.next().show().attr('class','glyphicon glyphicon-ok form-control-feedback').css('color','#414141');
-			this.repassword.attr('state','1')
-			this.showablebutton()
-		}else{
-			this.repassword.next().show().attr('class','glyphicon glyphicon-remove form-control-feedback').css('color','#D9534F');
-			this.repassword.siblings('.help-block').css('visibility','visible')
+		var value = this.repassword.val();
+		if(value.trim()!=''){
+			if(this.password.val() === value){
+				this.repassword.next().show().attr('class','glyphicon glyphicon-ok form-control-feedback').css('color','#414141');
+				this.repassword.attr('state','1')
+				this.showablebutton()
+			}else{
+				this.repassword.next().show().attr('class','glyphicon glyphicon-remove form-control-feedback').css('color','#D9534F');
+				this.repassword.siblings('.help-block').css('visibility','visible')
+			}
 		}
 	},
 	findusername(){
