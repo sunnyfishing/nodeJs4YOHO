@@ -1,0 +1,99 @@
+<div class='goods_list'>
+  <div class="page-header">
+    <h1 style="font-size:20px">商品列表<small style="white-space:pre">    goods_list</small></h1>
+  </div>
+  <div class='check'>
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="text">关键字：</label>
+        <input type="text" class="form-control primary" id="text" placeholder="请输入关键字">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail2">条件：</label>
+        <select class="form-control term">
+          <option name="small_sort_name">商品分类</option>
+          <option name="product_name">商品名称</option>
+          <option name="sales_price">商品现价</option>
+          <option name="market_price">商品原价</option>
+          <option name="product_id">商品ID</option>
+          <option name="product_skn">商品SKN</option>
+          <option name="edit_time">修改时间</option>
+        </select>
+      </div>
+      <button class="btn btn-default search">精确查找</button>
+      <button class="btn btn-default mohusearch">模糊查找</button>
+      <button class="btn btn-default all">全部</button>
+      <button class="btn btn-default add" data-toggle="popover" data-placement="left"
+      data-content='<form class="form-horizontal" enctype="multipart/form-data">
+  <div class="form-group">
+      <label for="input1" class="control-label">选择图片：</label>
+      <div class="fileinput">选择图片</div>
+      <img src="" class="showimg"/>
+      <input type="file" class="form-control addinput" placeholder="选择图片" accept="image/png,image/gif,image/jpeg">
+  </div>
+  <div class="form-group">
+      <label for="input1" class="control-label">商品名称：</label>
+      <input type="text" class="form-control addinput" placeholder="商品名称">
+  </div>
+  <div class="form-group">
+      <label for="input1" class="control-label">商品现价：</label>
+      <input type="text" class="form-control addinput" placeholder="商品现价">
+  </div>
+  <div class="form-group">
+      <label for="input1" class="control-label">商品原价：</label>
+      <input type="text" class="form-control addinput" placeholder="商品原价">
+  </div>
+  <div class="form-group">
+      <label for="input1" class="control-label">商品分类：</label>
+      <input type="text" class="form-control addinput" placeholder="商品分类">
+  </div>
+  <div class="form-group">
+      <label for="input1" class="control-label">商品ID：</label>
+      <input type="text" class="form-control addinput" placeholder="商品ID">
+  </div>
+  <div class="form-group">
+      <label for="input1" class="control-label">商品SKN：</label>
+      <input type="text" class="form-control addinput" placeholder="商品SKN">
+  </div>
+  <button class="btn btn-md btn-danger cancel">取消</button>
+  <button class="btn btn-md submit">提交</button>
+</form>'>添加</button>
+    </form>
+  </div>
+  <div class="table_con">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>图片</th>
+          <th>名称</th>
+          <th>现价</th>
+          <th>原价</th>
+          <th>分类</th>
+          <th>ID</th>
+          <th>SKN</th>
+          <th>修改时间</th>
+          <th>编辑</th>
+        </tr>
+      </thead>
+
+    </table>
+    <div class="loading">
+      <span class="glyphicon glyphicon-search"></span>
+      <span>加载中...</span>
+    </div>
+  </div>
+</div>
+<div class="modal fade in" id="removeone" tabindex="-1">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p style="text-align:center;font-size:16px">确定要删除吗？</p>
+      </div>
+      <div class="modal-footer" style="padding:7px 10px">
+        <button type="button" class="btn btn-primary yesremoveone" style="background:#414141" data-dismiss="modal">确定</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>

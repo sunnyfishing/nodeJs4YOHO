@@ -11,13 +11,6 @@ app.use(express.static(path.join(__dirname,'public')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
-//cookie session 中间件
-app.use(cookieSession({
-	name:'session',
-	secret:'some random charactors',
-	maxAge:1000*60*60*24
-}))
-
 //cookieSession
 app.use(cookieSession({
 	name:'session',

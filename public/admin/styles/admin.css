@@ -1,5 +1,8 @@
+
 @import "./common/user.css";
 
+
+@import "common/goods_list.css";
 .list{
   margin-top: 60px;
   height: 600px;
