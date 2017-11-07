@@ -1,6 +1,7 @@
 /*const bcrypt = require('bcrypt')*/
 const User = require('../model/user.js')
 const { getParam } = require('../utils/utils.js')
+const async=require('async')
 
 const register = function(req,res){
 	const {username,password} = req.body;
@@ -83,4 +84,106 @@ const signout = function(req,res){
 		use:'signout',
 	}))
 }
-module.exports={register,finduser,login,islogin,signout}
+
+const showUser=function(req,res,next){
+  const {pageNo} =req.body
+  const pageSize=3
+  async.parallel([
+    function(cb){
+      User.find({})
+        .then((re) => {
+          cb(null,Math.ceil(re.length/pageSize))
+        })
+    },
+    function(cb){
+      User.find({})
+        .limit(pageSize)
+        .then((result) => {
+          cb(null,result)
+        })
+    }
+  ],function(err,re){
+    if(!!err){
+      console.log(err);
+    }else {
+      res.json(getParam({
+        result:re[1],
+        pageCount:re[0],
+        pageNo
+      }))
+    }
+  })
+}
+const shearchUser=function(req,res,next){
+  const {vital,term,pageNo} = req.body
+  const pageSize=3
+  if(!!vital){
+    async.series([
+      function(cb){
+        User.find({})
+          .then((re) => {
+            if(!!re){
+              let res_arr=re.filter((item) => {
+                return (item[term]+'').indexOf(vital)!=-1
+              })
+              cb(null,res_arr)
+            }else{
+              res.json({isSearched:false,re:[]})
+              return
+            }
+          })
+      }
+    ],function(err,re){
+      if(err){
+        console.log(err);
+      }else{
+        if(re[0].length<=pageSize){
+          res.json(getParam({
+            isSearched:true,
+            result:re[0],
+            pageNo:1,
+            pageCount:Math.ceil(re[0].length/pageSize),
+            vital
+          }))
+        }else{
+          res.json(getParam({
+            isSearched:true,
+            result:re[0].slice((pageNo-1)*pageSize,pageNo*pageSize),
+            pageNo:1,
+            pageCount:Math.ceil(re[0].length/pageSize),
+            vital
+          }))
+        }
+      }
+    })
+  }else{
+     async.parallel([
+       function(cb){
+         User.find({})
+          .then((re) => {
+            cb(null,re.length)
+          })
+       },
+       function(cb){
+         User.find({})
+         .skip(pageSize*(pageNo-1))
+         .limit(pageSize)
+         .then((re) => {
+           cb(null,re)
+         })
+       }
+     ],function(err,re){
+       if(err){
+         console.log(err);
+       }else{
+         res.json(getParam({
+           result:re[1],
+           pageNo,
+           pageCount:Math.ceil(re[0]/pageSize)
+         }))
+       }
+     })
+  }
+}
+
+module.exports={register,finduser,login,islogin,signout,showUser,shearchUser}

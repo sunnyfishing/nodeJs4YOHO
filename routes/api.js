@@ -6,4 +6,6 @@ router.get('/users/islogin',userController.islogin)
 router.post('/users/register',userController.register)
 router.post('/users/login',userController.login)
 router.post('/users/signout',userController.signout)
+router.post('/users/showUser',userController.showUser)
+router.post('/users/shearchUser',userController.shearchUser)
  module.exports=router

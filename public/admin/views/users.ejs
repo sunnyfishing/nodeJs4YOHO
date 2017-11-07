@@ -3,3 +3,65 @@
     <h1 style="font-size:20px">用户<small style="white-space:pre">    users</small></h1>
   </div>
 </div>
+
+<div class="user_main">
+<div class="container">
+  <div class="row">
+    <form class="form-inline">
+     <div class="form-group ">
+       <label for="exampleInputName2">关键字:</label>
+       <input type="text" id='vital' class="form-control" id="exampleInputName2" placeholder="关键字">
+     </div>
+     <div class="form-group">
+       <div class='col-md-4'>
+         <select class="form-control" id='term'>
+           <option value='username'>用户名</option>
+           <option value='password'>密码</option>
+           <option value='phone'>手机号</option>
+           <option value='roles'>角色</option>
+         </select>
+       </div>
+     </div>
+     <div type="text" class="btn btn-default" id='search_btn'>搜索</div>
+ </form>
+  </div>
+</div>
+
+<hr>
+
+<table class='table table-hover table-striped'>
+  <tr>
+    <th>用户名</th>
+    <th>密码</th>
+    <th>手机号</th>
+    <th>角色</th>
+  </tr>
+  <% for(var i =0 ;i<result.length;i++){ %>
+  <tr>
+    <td><%= result[i].username %></td>
+    <td><%= result[i].password %></td>
+    <td><%= result[i].phone %></td>
+    <td><%= result[i].roles %></td>
+  </tr>
+  <% } %>
+</table>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination" id="pageItems">
+    <li id="back">
+      <a href="javascript:void(0);" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <% for(var i = 1 ;i <= pageCount ; i++){ %>
+    <li id="<%= i %>" class="<%= pageNo==i?'active':'' %>"><a href="javascript:void(0);"><%= i %></a></li>
+    <% } %>
+    <li id='next'>
+      <a href="javascript:void(0);" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+</div>

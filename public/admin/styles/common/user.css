@@ -1,0 +1,17 @@
+.user_main table{
+  text-align: center!important;
+  width: 80%;
+}
+.user_main table th{
+  text-align: center!important;
+}
+.user_main table td{
+  text-align: center!important;
+  width: 20%;
+}
+.user_main table tr{
+  text-align: center!important;
+}
+.user_main{
+  width:100%;
+}
