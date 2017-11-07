@@ -1,0 +1,127 @@
+.form-group input{
+  width: 150px !important;
+  margin-right: 10px
+}
+.form-group select{
+  margin-right: 10px
+}
+button.mohusearch{
+  margin:0 10px
+}
+.form-inline .add{
+  float: right;
+  background: #414141;
+  color:white
+}
+.form-inline .add:hover{
+  background: black
+}
+.table_con{
+  margin-top: 20px;
+  position: relative;
+}
+.loading{
+  width: 100%;
+  position: absolute;
+  top: 150px;
+  left: 350px;
+  display: none;
+}
+tr td{
+  height: 70px;
+}
+tr td,tr th{
+  text-align: center;
+  vertical-align: middle;
+}
+tr td img{
+  width: 30px
+}
+tr td .change{
+  background: #414141;
+  color: white;
+  font-size: 12px
+}
+tr td .change:hover{
+  background: black;
+  color: white !important;
+}
+tr td .change:focus{
+  background: black;
+  color: white !important;
+}
+.pagination a{
+  color:#414141 !important
+}
+.pagination .active a{
+  color:white !important;
+  background: #414141 !important;
+  border-color: #414141 !important;
+}
+.popover{
+  max-width:360px !important
+}
+.popover-content{
+  width: 360px
+}
+.form-horizontal .form-group{
+  width: 100%;
+  position: relative;
+}
+.form-horizontal .form-group label{
+  width: 100px;
+  padding: 0;
+  vertical-align: text-bottom;
+}
+.form-horizontal .form-group input{
+  width: 200px !important;
+  margin-bottom: 10px;
+  margin-left: 10px
+}
+.form-horizontal .form-group input[type='file']{
+  border: none;
+  box-shadow: none;
+  background: white;
+  opacity: 0
+}
+.form-horizontal .form-group .fileinput{
+  width: 83px;
+  height: 33px;
+  color: white;
+  background: #414141;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 115px;
+  line-height: 33px;
+  text-align: center;
+  cursor: pointer;
+}
+.form-horizontal .form-group .startimg{
+  width: 30px;
+  height: 40px;
+  margin: 0 20px 0 50px
+}
+.form-horizontal .form-group .showimg{
+  width: 30px;
+  height: 40px;
+  position: absolute;
+  top:0;
+  left:230px
+}
+.form-horizontal button:nth-of-type(2){
+  background: #414141;
+  color: white;
+  margin-right: 15px;
+}
+.form-horizontal button{
+  float: right;
+  margin-right: 30px;
+  margin-bottom: 10px
+}
+.form-horizontal .form-control{
+  display: inline-block !important
+}
+.form-horizontal .form-group{
+  margin-bottom: 0 !important
+}

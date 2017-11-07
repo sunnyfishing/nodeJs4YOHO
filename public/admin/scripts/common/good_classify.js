@@ -4,6 +4,7 @@ var Good_classify = function(con){
 }
 $.extend(Good_classify.prototype,{
 	init(){
+<<<<<<< HEAD
 		//this.createdom()
 		this.getGender();
 	},

@@ -22,7 +22,7 @@ $.extend(List.prototype,{
 		this.aside.on('mouseleave',$.proxy(this.leave,this))
 	},
 	enter(){
-		this.btnn.fadeIn()
+		this.btnn.stop().fadeIn()
 	},
 	leave(){
 			this.btnn.stop().fadeOut()

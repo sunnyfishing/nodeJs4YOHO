@@ -1,2 +1,3 @@
 dbname : YOHO
 	users: {username,password,phone,roles}
+	goods_list:{default_images,product_name,sales_price,market_price,small_sort_name,product_skn,product_id,edit_time}
