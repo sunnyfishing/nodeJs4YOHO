@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const url = 'mongodb://localhost:27017/YOHO'
+const url = 'mongodb://10.9.164.78:27017/YOHO'
 mongoose.connect(url,{
 	useMongoClient:true
 }).then(()=>{

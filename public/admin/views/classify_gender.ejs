@@ -1,0 +1,42 @@
+<div class='good_classify'>
+  <div class="page-header">
+    <h1 style="font-size:20px">商品分类<small style="white-space:pre">    good_classify</small></h1>
+  </div>
+  <div class="contain">
+	  <div class="details">
+  		<table class="table table-bordered">
+	      <caption>
+	      	<h4 style="color: #000;float: left;"><%= gender %></h4>
+	        <button id="addtypes" class="btn btn-primary" style="float: right;">添加</button>
+	      </caption>
+		  	<% if(gendertype.exitTypes){ %>
+		      <thead>
+		        <tr>
+		          <th>序号</th>
+		          <th>款式</th>
+		          <th>示例图片</th>
+		          <th>描述</th>
+		          <th>操作</th>
+		        </tr>
+		      </thead>
+		      <tbody id="list-con">
+		      	<% for( var i=0; i<gendertype.types.length; i++) {%>
+		      		<tr>
+		      			<td><%= i%></td>	
+		      			<td><%= gendertype[i]%></td>
+		      			<td><%= gendertype[i]%></td>
+		      			<td><%= gendertype[i]%></td>
+		      			<td>
+					        <button class="btn btn-primary" data-tag="update">修改</button>
+					        <button class="btn btn-danger" data-tag="delete">删除</button>
+					      </td>
+		      		</tr>
+		      	<% } %>
+		      </tbody>
+		  	<%}else{%>
+		  		<span>暂无数据</span>
+		  	<%}%>
+	    </table>
+  	</div>
+  </div>
+</div>
