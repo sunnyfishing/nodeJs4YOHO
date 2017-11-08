@@ -4,18 +4,23 @@ const async = require('async')
 const getlist = function(req,res){
   const {page,pageSize,term} = req.query
   var termm = term || {}
-  for(var val in termm){
-    var value = termm[val]
-    var key = val
+  if(typeof termm == 'object'){
+    for(var val in termm){
+      var value = termm[val]
+      var key = val
+    }
+    var obj = {}
+    obj[key] = eval(value)
+  }else{
+    var obj = JSON.parse(termm)
   }
-  var obj = {}
-  obj[key] = eval(value)
+  console.log(obj)
   async.parallel([
     function(cb){
       Goods_list.find(obj)
       .sort({_id:-1})
       .skip(pageSize*(page-1))
-      .limit(pageSize)
+      .limit(parseInt(pageSize))
       .then((result)=>{
         cb(null,result)
       })
