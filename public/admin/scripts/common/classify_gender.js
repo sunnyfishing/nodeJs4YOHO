@@ -1,43 +1,47 @@
-const gender = function(container,type){
+const styles = function(container,gender){
 	this.container = container || $('.list');
-	this.type = type;
+	this.gender = gender;
+	//console.log('gender')
 	this.init();
 }
-$.extend(gender.prototype,{
+$.extend(styles.prototype,{
 	init:function(){
-		//console.log(this.type)
+		this.createDom()
 		this.gettypes();
 	},
-	createDom:function(gender, gendertype){
+	createDom:function(){
 		var addtypesModal = new EJS({url:'/admin/views/modal/addtypes.ejs'}).render({})
 		$('body').append(addtypesModal)
-		this.container.find('.section').children().remove()
-		var html = new EJS({url:'/admin/views/classify_gender.ejs'}).render({
-			gendertype,
-			gender
-		})
-		this.container.find('.section').html(html)
-		this.bindEvents()
+//		this.container.find('.section').children().remove()
+//		var html = new EJS({url:'/admin/views/classify_gender.ejs'}).render({
+//			gendertype,
+//			gender
+//		})
+//		this.container.find('.section').html(html)
+//		this.bindEvents()
 	},
 	bindEvents(){
 		$("#addtypes").on('click',this.addtypes.bind(this))
 	},
 	addtypes(){
 		$('#addtypesmodal').modal('show')
-		$('#typesSave').on('click',this.SaveBtn.bind(this))
+		//$('#typesSave').on('click',this.SaveBtn.bind(this))
+		//不应该直接添加到数据库，应该跳转到添加pro页面
+		$('#typesSave').on('click',this.openProPage.bind(this))
+	},
+	openProPage(){
+		new product(this.container, this.gender, this.typestyle)
 	},
 	SaveBtn(){
+		this.typestyle = $('#typestyle').val()
 		$('#addtypesmodal').modal('hide')
-		var typestyle = $('#typestyle').val()
-		var typeimage = $('#typeimage').val()
-		var descrption = $('#descrption').val()
+		//new product(this.container, gender, typestyle)		
 		$.ajax({
 			url:'/api/type/addtypes',
 			type:'post',
 			data:{
-				typestyle,
-				typeimage,
-				descrption
+				typestyle:this.typestyle,
+				gender:this.gender
 			},
 			success:this.handleAddtypeSucc.bind(this)
 		})
@@ -50,23 +54,22 @@ $.extend(gender.prototype,{
 			alert('添加失败')
 		}
 	},
-	gettypes(){
-		this.getfromback();
-		
-	},
-	getfromback(){
+	//ok
+	gettypes(){			//获得数据库中的styles
 		$.ajax({
 			url:'/api/type/gettypes',
 			type:'post',
-			data:{
-				types:this.type
-			},
 			success:this.getbackSucc.bind(this)
 		})
 	},
-	getbackSucc(res){
+	getbackSucc(res){		//获得后端数据之后判断是否为空，进行判断，
+		if(res.data.exitTypes){			//不为空时进行渲染
+			//this.createDom(this.type,res);
+		}else{				//为空时，直接跳出添加页面
+			this.addtypes()
+		}
 		//console.log(res.data)
-		this.createDom(this.type,res);
+		//this.createDom(this.type,res);
 		
 	}
 	

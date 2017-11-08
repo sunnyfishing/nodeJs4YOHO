@@ -1,71 +1,11 @@
-{	//集合
-	[	//文档
-		'sex':'men'
-			'上衣':[
-				'棉衣':{
-					'img':'lllll'
-					'描述':'lllll'
-				},
-				'卫衣':{
-					'img':'lllll'
-					'描述':'lllll'
-				}
-			],
-			'裤装':[
-				'棉裤':{
-					'img':'lllll'
-					'描述':'lllll'
-				},
-				'休闲':{
-					'img':'lllll'
-					'描述':'lllll'
-				}
-			]
-		],
-	'女':[
-			'上衣':[
-				'棉衣':{
-					'img':'lllll'
-					'描述':'lllll'
-				},
-				'卫衣':{
-					'img':'lllll'
-					'描述':'lllll'
-				}
-			],
-			'裤装':[
-				'棉裤':{
-					'img':'lllll'
-					'描述':'lllll'
-				},
-				'休闲':{
-					'img':'lllll'
-					'描述':'lllll'
-				}
-			]
-		],
-	'孩':[
-			'上衣':[
-				'棉衣':{
-					'img':'lllll'
-					'描述':'lllll'
-				},
-				'卫衣':{
-					'img':'lllll'
-					'描述':'lllll'
-				}
-			],
-			'裤装':[
-				'棉裤':{
-					'img':'lllll'
-					'描述':'lllll'
-				},
-				'休闲':{
-					'img':'lllll'
-					'描述':'lllll'
-				}
-			]
-		]
-	
-}
+gender:	men  women  kids
+styles: 上衣  裤子
+pro: 品类
+img: 示例图片
+des: 描述
 
+
+先检查是否有gender，如果不存在，弹出模态框进行添加，点击添加按钮，
+跳转到styles页面，检查数据库中是否存在styles，如果不存在，弹出添加模态框，点击添加。
+跳转到product页面，检查是否存在pro，若果不存在，弹出添加模态框，点击添加。 做到这了
+将gender,style,pro一起添加到数据库中，成为一个文档

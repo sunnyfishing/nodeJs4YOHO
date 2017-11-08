@@ -1,29 +1,25 @@
 const db = require('../utils/database.js')
 var schema = new db.Schema({
-	sex:{
-		type:Array,
+	gender:{				//men  women  kids
+		type:String, 
 		required:true
 	},
-	types:{
-		type:Array,
-		required:true
-	},
-	styles:{
-		type:Object,
-		required:true
-	},
-	typestyle:{
+	styles:{				//上衣，裤子
 		type:String,
 		required:true
 	},
-	typeimage:{
-		type:String,
-		required:false		
-	},
-	descrption:{
+	pro:{
 		type:String,
 		required:true
-	}
+	},
+//	img:{
+//		type:String,
+//		required:false
+//	},
+//	des:{
+//		type:String,
+//		required:false
+//	}
 })
 
 var Genders = db.model('genders',schema)

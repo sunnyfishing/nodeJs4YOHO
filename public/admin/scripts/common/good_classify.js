@@ -4,35 +4,42 @@ var Good_classify = function(con){
 }
 $.extend(Good_classify.prototype,{
 	init(){
-		//this.createdom()
+		this.createdom()
 		this.getGender();
 	},
-	createdom(res){
+	//ok
+	createdom(){
 		var modal = new EJS({url:'/admin/views/modal/addModal.ejs'}).render({})
 		$("body").append(modal)
-		var modal = new EJS({url:'/admin/views/modal/delgenderModal.ejs'}).render({})
-		$("body").append(modal)
-		this.con.find('.section').children().remove()
-    	var html = new EJS({url:'/admin/views/good_classify.ejs'}).render({
-			list:res.data.getres
-    	})
+//		var modal = new EJS({url:'/admin/views/modal/delgenderModal.ejs'}).render({})
+//		$("body").append(modal)
+//		this.con.find('.section').children().remove()
+//  	var html = new EJS({url:'/admin/views/good_classify.ejs'}).render({
+//			list:res.data.getres
+//  	})
+//
+//  	this.con.find('.section').append(html)
 
-    	this.con.find('.section').append(html)
-
-    	this.bindEvents()
+    	//this.bindEvents()
 	},
 	bindEvents(){
 		$("#addgender").on('click',this.clickaddModel.bind(this));
 		$('.delgender').on('click',this.clickdelGender.bind(this));
-		$('.types').on('click', this.click2types.bind(this));
+		//$('.types').on('click', this.click2types.bind(this));
 	},
 	click2types(e){
 		this.types = $(e.target).text()
-		new gender(this.con, this.types)
+		//new gender(this.con, this.types)
 	},
+	//ok
 	clickaddModel(){
 		$("#addModal").modal("show")
-		$("#genderSave").on('click',this.addGender.bind(this))
+		//进行到这里应该是--从数据库中读取gender，看是否有重复---不对，现在是以数据库为空时的调用。所以可以直接打开style页面
+		//$("#genderSave").on('click',this.addGender.bind(this))
+		$("#genderSave").on('click',this.openStylePage.bind(this))
+	},
+	openStylePage(){
+		new styles(this.con, gender)
 	},
 	clickdelGender(e){
 		this.gendertext = $(e.target).prev().text()	//获得点击对象的前一个按钮的值，并传递各后端
@@ -59,34 +66,48 @@ $.extend(Good_classify.prototype,{
 		}
 
 	},
+	//ok
 	addGender(){
-		var gendertype = $("#gender").val()
-		$("#gender").val('')
+		//添加成功后跳转到添加款式界面。
+		this.gender = $("#gender").val()
+		//$("#addModal").modal("hide")
+		console.log('ok')
 		$.ajax({
 			url:'/api/list/addgender',
 			type:'post',
 			data:{
-				gendertype
+				gender:this.gender
 			},
 			success:this.addGenderSucc.bind(this)
 		})
 	},
+	//ok
 	addGenderSucc(res){
 		if(res.data.save){
-			this.getGender();
-			$("#addModal").modal("hide")	//BUG 保存后页面仍为黑色
+			$("#addModal").modal("hide")	
+			//this.getGender();
+			new styles(this.con, gender)
 		}else{
-			alert("用户名已存在")
+			alert("款型已存在")
 		}
 	},
-	getGender(){
-		// $.ajax({
-		// 	url:'/api/list/gender',
-		// 	type:'post',
-		// 	success:this.handleGetGender.bind(this)
-		// })
+	getGender(){			//显示所有的gender
+		 $.ajax({
+		 	url:'/api/list/getGender',
+		 	type:'post',
+		 	success:this.handleGetGender.bind(this)
+		 })
 	},
-	handleGetGender(res){
-		this.createdom(res);
+	//ok
+	handleGetGender(res){		
+		//console.log(res.data.getres)
+		//this.createdom()
+		if(res.data.getres){		
+			console.log(1)
+		}else{						//当数据库为空时,直接调用添加框
+			console.log(0)
+			this.clickaddModel()
+		}
+		//this.createdom(res);
 	}
 });
