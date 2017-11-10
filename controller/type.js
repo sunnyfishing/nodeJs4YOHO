@@ -2,31 +2,49 @@ const Genders = require('../model/list.js');
 const { getParam } = require('../utils/utils.js');
 
 const gettypes = function(req, res){
-	//const { styles } = req.body
+	const { gender } = req.body
 	//查找数据库
-	Genders.find()
+	Genders.find({gender})
 		.then((result)=>{
-			if(result.length != 0){		//当数据库中有styles时
-				res.json(getParam({exitTypes:true}))
-			}else{			//数据库中没有对应的styles时，返回false
+			if(result.length != 0){		//当数据库存在对应的gender时
+				res.json(getParam({exitTypes:result}))
+			}else{			//数据库中没有传入的gender时
 				res.json(getParam({exitTypes:false}))
 			}
 		})
 }
 const addtypes = function(req, res){
+	console.log(req.body)
+	
 	const { typestyle, gender} = req.body
 	
-	
-//	Genders.update({'types': { $elemMatch:{ typestyle : typestyle } }})
-//		.then((result)=>{
-//			if(!result){
-//				console.log(1)
-//				res.json(getParam({isSave:true}))
-//			}else{
-//				console.log(0)
-//				res.json(getParam({isSave:false}))
-//			}
-//		})
+	Genders.findOne({gender, typestyle })
+		.then((result)=>{
+			if(result){				//如果在数据库中有gender, typestyle, prostyle相同的
+				res.json(getParam({addtypes:false}))
+			}else{
+				var willSavePro = new Genders({
+					gender, 
+					typestyle
+				})
+				willSavePro.save().then(()=>{
+					res.json(getParam({addtypes:true}))
+				})
+			}
+		})
 }
-
-module.exports = {gettypes, addtypes}
+const deltypes = function(req, res){
+	const {styletext} = req.body
+	console.log(styletext)
+   	Genders.remove({typestyle : styletext})
+   		.then((result)=>{
+   			if(!result){
+   				//console.log(result)
+   				res.json(getParam({delstyle:true}))
+   			}else{
+   				//console.log(false)
+   				res.json(getParam({delstyle:false}))
+   			}
+   		})
+}
+module.exports = {gettypes, addtypes, deltypes}

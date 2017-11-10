@@ -23,8 +23,13 @@ router.post('/list/delgender',listController.delgender)
 
 router.post('/type/gettypes',typeController.gettypes)
 router.post('/type/addtypes',typeController.addtypes)
+router.post('/type/deltypes',typeController.deltypes)
 
 router.post('/pro/getPro',productController.getPro)
+router.post('/pro/addPro',productController.addPro)
+router.post('/pro/delPro',productController.delPro)
+router.get('/pro/getSingl',productController.getSingl)
+router.post('/pro/updatePro',productController.updatePro)
 
 router.get('/goods_list/getlist',goodslistController.getlist)
 router.get('/goods_list/getone',goodslistController.getone)

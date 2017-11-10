@@ -4,22 +4,22 @@ var schema = new db.Schema({
 		type:String, 
 		required:true
 	},
-	styles:{				//上衣，裤子
+	typestyle:{				//上衣，裤子
 		type:String,
 		required:true
 	},
-	pro:{
+	prostyle:{
 		type:String,
 		required:true
 	},
-//	img:{
-//		type:String,
-//		required:false
-//	},
-//	des:{
-//		type:String,
-//		required:false
-//	}
+	prosimage:{
+		type:String,
+		required:true
+	},
+	descrption:{
+		type:String,
+		required:true
+	},
 })
 
 var Genders = db.model('genders',schema)

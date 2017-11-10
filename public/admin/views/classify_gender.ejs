@@ -6,7 +6,7 @@
 	  <div class="details">
   		<table class="table table-bordered">
 	      <caption>
-	      	<h4 style="color: #000;float: left;"><%= gender %></h4>
+	      	<h4 style="color: #000;float: left;" class="back2gender"><%= gender %></h4>
 	        <button id="addtypes" class="btn btn-primary" style="float: right;">添加</button>
 	      </caption>
 	      <thead>
@@ -17,13 +17,13 @@
 	        </tr>
 	      </thead>
 	      <tbody id="list-con">
-	      	<% for( var i=0; i<gendertype.types.length; i++) {%>
+	      	<% for( var i=0; i<gendertype.length; i++) {%>
 	      		<tr>
-	      			<td><%= i%></td>	
+	      			<td><%= i+1%></td>	
 	      			<td><%= gendertype[i]%></td>
 	      			<td>
-				        <button class="btn btn-primary" data-tag="update">修改</button>
-				        <button class="btn btn-danger" data-tag="delete">删除</button>
+				        <button class="btn btn-primary checkpro" data-tag="update" >查看</button>
+				        <button class="btn btn-danger delstyle" data-tag="delete" >删除</button>
 				      </td>
 	      		</tr>
 	      	<% } %>

@@ -6,28 +6,29 @@
 	  <div class="details">
   		<table class="table table-bordered">
 	      <caption>
-	      	<h4 style="color: #000;float: left;"><%= gender %>>><%= type %></h4>
-	        <button id="addpro" class="btn btn-primary" style="float: right;">添加</button>
+	      	<h4 style="color: #000;float: left;" class="back2gender"><%= gender %> >></h4>
+	      	<h4 style="color: #000;float: left;" id="back2style"><%= type %></h4>
+	        <button id="addprobtn" class="btn btn-primary" style="float: right;">添加</button>
 	      </caption>
 	      <thead>
 	        <tr>
 	          <th>序号</th>
 	          <th>品类</th>
-	          <th>示例图片</th>
 	          <th>描述</th>
+	          <th>示例图片</th>
 	          <th>操作</th>
 	        </tr>
 	      </thead>
 	      <tbody id="list-con">
-	      	<% for( var i=0; i<gendertype.types.pro.length; i++) {%>
+	      	<% for( var i=0; i<prosArr.length; i++) {%>
 	      		<tr>
-	      			<td><%= i%></td>	
-	      			<td><%= gendertype[i]%></td>
-	      			<td><%= gendertype[i]%></td>
-	      			<td><%= gendertype[i]%></td>
+	      			<td><%= i+1%></td>	
+	      			<td class="prostyle"><%= prosArr[i].prostyle%></td>
+	      			<td><%= prosArr[i].descrption%></td>
+	      			<td><img src="<%= prosArr[i].prosimage%>"/></td>
 	      			<td>
-				        <button class="btn btn-primary" data-tag="update">修改</button>
-				        <button class="btn btn-danger" data-tag="delete">删除</button>
+				        <button class="btn btn-primary updatepro" data-tag="update">修改</button>
+				        <button class="btn btn-danger delpro" data-tag="delete">删除</button>
 				      </td>
 	      		</tr>
 	      	<% } %>

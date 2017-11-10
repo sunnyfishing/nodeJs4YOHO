@@ -16,8 +16,8 @@ const getGender = function(req, res){		//显示所有
    		})
 }
 const addgender = function(req,res){
-  	const { gender } = req.body
-   	Genders.findOne({ gender })
+  	//const { gender } = req.body
+   	Genders.find()
    		.then((result)=>{
    			if(result){		//当查找到数据库中存在相同的标识时
    				console.log(0)
@@ -38,8 +38,9 @@ const addgender = function(req,res){
    
 
 const delgender= function(req, res){
+	console.log('houtai')
    	const {gendertext} = req.body
-   	Genders.remove({sex : gendertext})
+   	Genders.remove({gender : gendertext})
    		.then((result)=>{
    			if(result){
    				res.json(getParam({delgender:true}))
