@@ -4,6 +4,13 @@ var Goods_list = function(con){
 }
 $.extend(Goods_list.prototype,{
 	init(){
+		this.ws = new WebSocket('ws://localhost:5000/ws')
+    // this.ws.onmessage=function(e){
+    //  console.log(e.data);
+    // };
+    this.ws.onopen=function(){
+     console.log('_connect')
+    };
 		this.createdom();
     new Goods_list_table();
 		this.bindEvents()
@@ -32,6 +39,12 @@ $.extend(Goods_list.prototype,{
 		this.search.on('click',$.proxy(this.searchinfo,this))
 		this.mohusearch.on('click',$.proxy(this.searchinfo,this))
 		this.all.on('click',$.proxy(this.getall,this))
+		$(window).on('beforeunload',$.proxy(this.closews,this))
+	},
+	closews(){
+		this.ws.onclose = function(){
+			console.log('_close');
+		}
 	},
 	preventDefault(e){
 		e.preventDefault();
@@ -123,6 +136,7 @@ $.extend(Goods_list.prototype,{
 	addSuc(data){
 		if(data.data.state){
 			this.submit.text('提交成功')
+			this.ws.send('add')
 		}else{
 			this.submit.text('提交失败')
 		}

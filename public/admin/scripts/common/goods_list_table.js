@@ -4,17 +4,25 @@ const Goods_list_table = function(primary){
 }
 $.extend(Goods_list_table.prototype,{
   init(primary){
+    this.ws = new WebSocket('ws://localhost:5000/ws')
+    // this.ws.onmessage=function(e){
+    //  console.log(e.data);
+    // };
+    this.ws.onopen=function(){
+     console.log('_connect')
+    };
     this.table = $('.table')
     this.loading = $('.loading')
     this.createdom(1,this.nowprimary)
   },
-  createdom(page,term){
+  createdom(page,term,pagesize){
     var page = page || 1
     var term = term || {}
-    var pageSize = 5
+    var pageSize = pagesize || 5
 		this.table.find('tbody').remove();
 		this.table.find('tfoot').remove();
 		this.loading.show();
+    console.log(typeof pageSize);
     $.ajax({
       type : 'get',
       url : '/api/goods_list/getlist',
@@ -27,6 +35,7 @@ $.extend(Goods_list_table.prototype,{
     })
   },
   getlistSuc(data){
+    console.log(data);
     this.loading.hide();
     var html = new EJS({url:'./views/goods_list_table.ejs'}).render({
       data : data.data.data
@@ -36,6 +45,8 @@ $.extend(Goods_list_table.prototype,{
     this.remove = $('.remove')
     this.yesremove = $('.yesremoveone')
     this.pagination = $('.pagination')
+    this.topage = $('.topage')
+    this.everypage = $('.everypage')
     this.change.popover({
       html:true,
     })
@@ -47,24 +58,41 @@ $.extend(Goods_list_table.prototype,{
     this.pagination.on('click',$.proxy(this.changepage,this))
     this.change.on('shown.bs.popover',$.proxy(this.popshown,this))
     this.change.on('show.bs.popover',$.proxy(this.popshow,this))
+    this.topage.on('change',$.proxy(this.pageinfo,this))
+    this.everypage.on('change',$.proxy(this.pageinfo,this))
+    $(window).on('beforeunload',$.proxy(this.closews,this))
   },
+  pageinfo(e){
+    if($(e.target).hasClass('everypage')){
+      this.num = $(e.target).val();
+      this.createdom(this.now,this.nowprimary,this.num)
+    }else{
+      this.now = $(e.target).val();
+      this.createdom(this.now,this.nowprimary,this.num)
+    }
+  },
+  closews(){
+		this.ws.onclose = function(){
+			console.log('_close');
+		}
+	},
   changepage(e){
     var li = $(e.target).closest('li')
     var nowpage = $(e.target).closest('ul').attr('page')
     var totle = $(e.target).closest('ul').attr('totle')
     if(li.attr('tip')=='pre'){
       if(nowpage!=1){
-        this.createdom(parseInt(nowpage)-1)
+        this.createdom(parseInt(nowpage)-1,this.nowprimary,this.num)
       }
     }
     if(li.attr('tip')=='next'){
       if(nowpage!=totle){
-        this.createdom(parseInt(nowpage)+1)
+        this.createdom(parseInt(nowpage)+1,this.nowprimary,this.num)
       }
     }
     if(li.attr('tip')=='pagenum'){
       if(li.attr('class')!='active'){
-        this.createdom(parseInt(li.find('a').text()))
+        this.createdom(parseInt(li.find('a').text()),this.nowprimary,this.num)
       }
     }
   },
@@ -85,7 +113,6 @@ $.extend(Goods_list_table.prototype,{
   getoneSuc(data){
     if(data.data.state){
       var changeinput = this.tr.find('.popover').find('.changeinput')
-      console.log(changeinput);
       changeinput.eq(0).siblings('.startimg').attr('src','/admin/images/'+data.data.data[0].default_images)
       changeinput.eq(1).val(data.data.data[0].product_name)
       changeinput.eq(2).val(data.data.data[0].sales_price)
@@ -157,6 +184,7 @@ $.extend(Goods_list_table.prototype,{
   updateSuc(data){
     if(data.data.state){
 			this.submit.text('提交成功')
+      this.ws.send('update')
 		}else{
 			this.submit.text('提交失败')
 		}
