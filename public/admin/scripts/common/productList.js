@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const product = function(container, gender, typestyle){
 	this.container = container
 	this.gender = gender
