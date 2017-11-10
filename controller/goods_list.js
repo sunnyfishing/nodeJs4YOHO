@@ -14,7 +14,6 @@ const getlist = function(req,res){
   }else{
     var obj = JSON.parse(termm)
   }
-  console.log(obj)
   async.parallel([
     function(cb){
       Goods_list.find(obj)
@@ -37,7 +36,7 @@ const getlist = function(req,res){
       state : true,
       data : {
         result : ress[0],
-        pageSize : 5,
+        pageSize,
         page,
         count : ress[1]
       }

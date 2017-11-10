@@ -20,6 +20,9 @@ button.mohusearch{
   margin-top: 20px;
   position: relative;
 }
+.table{
+  margin-bottom: 0
+}
 .loading{
   width: 100%;
   position: absolute;
@@ -49,6 +52,9 @@ tr td .change:hover{
 tr td .change:focus{
   background: black;
   color: white !important;
+}
+.pagination{
+  float: right;
 }
 .pagination a{
   color:#414141 !important
@@ -124,4 +130,21 @@ tr td .change:focus{
 }
 .form-horizontal .form-group{
   margin-bottom: 0 !important
+}
+p.textinfo{
+  height: 79px;
+  line-height: 79px;
+  color: #414141;
+  font-size: 12px;
+  padding-left: 10px
+}
+.topage{
+  width: 130px;
+  float: right;
+  margin: 20px 10px
+}
+.everypage{
+  width: 130px;
+  float: right;
+  margin: 20px 0px
 }

@@ -54,7 +54,10 @@
   </tbody>
   <tfoot>
     <tr>
-      <td colspan="10" style="text-align:right">
+      <td colspan="5" style="text-align:left">
+        <p class="textinfo">共<%= data.count %>条数据，每页<%= data.pageSize %>条，共<%= Math.ceil(data.count/data.pageSize) %>页</p>
+      </td>
+      <td colspan="5" style="text-align:right">
         <nav>
           <ul class="pagination" page="<%= data.page %>" totle="<%= Math.ceil(data.count/data.pageSize) %>">
             <li class="<%= data.page==1?'disabled':'' %>" tip="pre"><a href="javascript:void(0)"><span>&laquo;</span></a></li>
@@ -63,6 +66,18 @@
             <% } %>
             <li class="<%= data.page==Math.ceil(data.count/data.pageSize)?'disabled':'' %>" tip="next"><a href="javascript:void(0)"><span>&raquo;</span></a></li>
           </ul>
+          <select class="form-control topage">
+            <% for(var i=0;i<data.count/data.pageSize;i++) {%>
+              <option  value="<%= i+1 %>" <%= data.page==i+1?'selected' : '' %>>跳转到第<%= i+1 %>页</option>
+            <% } %>
+          </select>
+          <select class="form-control everypage">
+              <option value="5" <%= data.pageSize==5?'selected' : '' %> >每页5条数据</option>
+              <option value="4" <%= data.pageSize==4?'selected' : '' %>>每页4条数据</option>
+              <option value="3" <%= data.pageSize==3?'selected' : '' %>>每页3条数据</option>
+              <option value="2" <%= data.pageSize==2?'selected' : '' %>>每页2条数据</option>
+              <option value="1" <%= data.pageSize==1?'selected' : '' %>>每页1条数据</option>
+          </select>
         </nav>
       </td>
     </tr>
