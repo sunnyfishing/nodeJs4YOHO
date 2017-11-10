@@ -107,5 +107,16 @@ a:hover{
   color: #c0c0c0
 }
 .page-header{
-  margin-top: 0 !important
+  margin-top: 0 !important;
+}
+
+
+
+
+/*user气泡的管理*/
+.user_badge{
+  background:#C75050;
+  position: absolute;
+  top: 20%;
+  right: 20%;
 }

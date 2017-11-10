@@ -16,6 +16,10 @@ const schema = new db.Schema({
 	roles:{
 		type:String,
 		required:true
+	},
+	createTime:{
+		type:String,
+		required:true
 	}
 })
 const User = db.model('users',schema)

@@ -3,14 +3,17 @@ const User = require('../model/user.js')
 const { getParam } = require('../utils/utils.js')
 const async=require('async')
 
+var pageSize=3
 const register = function(req,res){
-	const {username,password} = req.body;
+	const {username,password,roles,phone,createTime} = req.body;
 	/*bcrypt.hash(password, 10)
     .then((password) => {*/
         const willSaveUser = new User({
           	username,
          		password,
-          	roles:'1'
+          	roles:!!roles?roles:'1',
+						phone,
+						createTime
         })
         console.log(willSaveUser)
         willSaveUser.save().then(() => {
@@ -87,7 +90,6 @@ const signout = function(req,res){
 
 const showUser=function(req,res,next){
   const {pageNo} =req.body
-  const pageSize=3
   async.parallel([
     function(cb){
       User.find({})
@@ -109,14 +111,44 @@ const showUser=function(req,res,next){
       res.json(getParam({
         result:re[1],
         pageCount:re[0],
-        pageNo
+        pageNo,
+				totalPage:re[0]*pageSize
       }))
     }
   })
 }
+
+const deleteUser=function(req,res,next){
+	const {id} = req.body
+	User.findOneAndRemove(id)
+		.then((re) => {
+			if(!!re){
+				res.json(true)
+			}else{
+				res.json('删除失败！')
+			}
+		})
+}
+
 const shearchUser=function(req,res,next){
-  const {vital,term,pageNo} = req.body
-  const pageSize=3
+  const {vital,term,pageNo,pageSize,id} = req.body
+	if(!!id){
+		User.findOneAndRemove(id)
+			.then((re) => {
+				if(!!re){
+					res.json(getParam({
+            isSearched:true,
+            result:re[0].slice((pageNo-1)*pageSize,pageNo*pageSize),
+            pageNo:1,
+            pageCount:Math.ceil(re[0].length/pageSize),
+            vital,
+						totalPage:re[0].length
+          }))
+				}else{
+					res.json('删除失败！')
+				}
+			})
+	}
   if(!!vital){
     async.series([
       function(cb){
@@ -143,7 +175,8 @@ const shearchUser=function(req,res,next){
             result:re[0],
             pageNo:1,
             pageCount:Math.ceil(re[0].length/pageSize),
-            vital
+            vital,
+						totalPage:re[0].length
           }))
         }else{
           res.json(getParam({
@@ -151,7 +184,8 @@ const shearchUser=function(req,res,next){
             result:re[0].slice((pageNo-1)*pageSize,pageNo*pageSize),
             pageNo:1,
             pageCount:Math.ceil(re[0].length/pageSize),
-            vital
+            vital,
+						totalPage:re[0].length
           }))
         }
       }
@@ -179,7 +213,8 @@ const shearchUser=function(req,res,next){
          res.json(getParam({
            result:re[1],
            pageNo,
-           pageCount:Math.ceil(re[0]/pageSize)
+           pageCount:Math.ceil(re[0]/pageSize),
+					 totalPage:re[0]
          }))
        }
      })

@@ -1,17 +1,76 @@
 .user_main table{
   text-align: center!important;
-  width: 80%;
+}
+.user_main table th:first-child,.user_main table td:first-child{
+  text-align: center!important;
+  width: 25%!important;
+}
+.user_main table td{
+  width: 12%!important;
 }
 .user_main table th{
   text-align: center!important;
-}
-.user_main table td{
-  text-align: center!important;
-  width: 20%;
+  width: 12%!important;
 }
 .user_main table tr{
   text-align: center!important;
 }
-.user_main{
-  width:100%;
+.user_main  tr td {
+  height: auto!important;
+}
+#formserach{
+  display: flex!important;
+  justify-content: space-between;
+
+  margin-right:20%;
+  margin-left:5%;
+}
+#pageNum{
+  display:flex;
+  justify-content:space-between;
+  padding-left:5%;
+}
+#pageNum_left{
+  display: flex;
+  align-items:center;
+}
+#pageNum_left i{
+  font-style:normal;
+  font-weight:bold;
+}
+#formserach .dropdown .btn{
+  padding-top: 0!important;
+  padding-bottom: 0!important;
+  padding-right:6px!important;
+  margin-left: 2px;
+  margin-right:2px;
+}
+.pageStyle{
+  display:flex;
+  align-items:center;
+}
+#pageItems li a{
+  padding:3px 9px!important;
+}
+#tableTit{
+  margin-bottom:0!important;
+  background:#414141;
+  color:white;
+}
+.limBlo{
+  max-height: 325px!important;
+  height: auto;
+  overflow-y:auto;
+}
+.limBlo #noResult{
+  font-size:24px;
+  font-weight:bold;
+  color: #ddd;
+  display:flex;
+  padding:5px 0;
+  justify-content:center;
+  align-items:center;
+}
+.limBlo #noResult td {
+  width: 100%!important;
 }

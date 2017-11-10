@@ -41,13 +41,15 @@ $.extend(signIn.prototype ,{
 	},
 	userLogin(e){
 		e.preventDefault();
+		let createTime = new Date().toLocaleDateString()
 		this.login.text('登录中...').attr('disabled','disabled')
 		$.ajax({
 			type:'post',
 			url:'/api/users/login',
 			data:{
 				username : this.username.val(),
-				password : this.password.val()
+				password : this.password.val(),
+				createTime
 			},
 			success:$.proxy(this.userloginSuc,this)
 		})
