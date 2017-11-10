@@ -27,11 +27,11 @@ $.extend(product.prototype,{
 	},
 	//点击事件
 	bindEvent(){
-		$('#addprobtn').on('click',this.toaddpro.bind(this))
-		$('#back2style').on('click',this.back2Style.bind(this))
-		$('.back2gender').on('click',this.back2gender.bind(this))
-		$('.delpro').on('click',this.click2Delpro.bind(this))
-		$('.updatepro').on('click',this.click2update.bind(this))
+		$('#addprobtn').unbind().on('click',this.toaddpro.bind(this))
+		$('#back2style').unbind().on('click',this.back2Style.bind(this))
+		$('.back2gender').unbind().on('click',this.back2gender.bind(this))
+		$('.delpro').unbind().on('click',this.click2Delpro.bind(this))
+		$('.updatepro').unbind().on('click',this.click2update.bind(this))
 	},
 	//修改数据
 	click2update(e){
@@ -59,7 +59,7 @@ $.extend(product.prototype,{
 		$('#prostyle').val(res.data.getSing.prostyle)
 		$('#descrption').val(res.data.getSing.descrption)
 		this.prosimage = res.data.getSing.prosimage
-		$('#prosSave').on('click',this.chanPros.bind(this))
+		$('#prosSave').unbind().on('click',this.chanPros.bind(this))
 	},
 	chanPros(){
 		$('#addprosmodal').modal('hide')
@@ -87,7 +87,7 @@ $.extend(product.prototype,{
 		//console.log(1)
 		this.protext = $(e.target).parent().parent().find('.prostyle').text()	//获得点击对象的前一个按钮的值，并传递各后端
 		$("#delgendermodal").modal("show")
-		$("#delGenderYes").on('click',this.delPro.bind(this))
+		$("#delGenderYes").unbind().on('click',this.delPro.bind(this))
 	},
 	//隐藏删除框并删除数据
 	delPro(){
@@ -148,7 +148,7 @@ $.extend(product.prototype,{
 		$('#prostyle').val('')
 		$('#prosimage').val('')
 		$('#descrption').val('')
-		$('#prosSave').on('click',this.savePros.bind(this))
+		$('#prosSave').unbind().on('click',this.savePros.bind(this))
 	},
 	//添加数据
 	savePros(){

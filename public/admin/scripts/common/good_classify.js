@@ -24,9 +24,9 @@ $.extend(Good_classify.prototype,{
     	this.bindEvents()
 	},
 	bindEvents(){
-		$("#addgender").on('click',this.clickaddModel.bind(this));
-		$('.delgender').on('click',this.clickdelGender.bind(this));
-		$('.types').on('click', this.click2types.bind(this));
+		$("#addgender").unbind().on('click',this.clickaddModel.bind(this));
+		$('.delgender').unbind().on('click',this.clickdelGender.bind(this));
+		$('.types').unbind().on('click', this.click2types.bind(this));
 	},
 	click2types(e){		//点击gender名，到gender对应的下一个目录
 		this.types = $(e.target).text()
@@ -36,7 +36,7 @@ $.extend(Good_classify.prototype,{
 	clickaddModel(){
 		$("#addModal").modal("show")
 		//进行到这里应该是--从数据库中读取gender，看是否有重复---不对，现在是以数据库为空时的调用。所以可以直接打开style页面
-		$("#genderSave").on('click',this.openStylePage.bind(this))
+		$("#genderSave").unbind().on('click',this.openStylePage.bind(this))
 	},
 	openStylePage(){
 		this.gender = $("#gender").val()
@@ -47,7 +47,7 @@ $.extend(Good_classify.prototype,{
 		this.gendertext = $(e.target).prev().text()	//获得点击对象的前一个按钮的值，并传递各后端
 		//console.log(this.gendertext)
 		$("#delgendermodal").modal("show")
-		$("#delGenderYes").on('click',this.delGender.bind(this))
+		$("#delGenderYes").unbind().on('click',this.delGender.bind(this))
 	},
 	delGender(){//删除，请求后端数据库
 		$("#delgendermodal").modal("hide")

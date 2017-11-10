@@ -102,12 +102,14 @@ $.extend(signUp.prototype ,{
 	postregister(e){
 		e.preventDefault();
 		$(e.target).text('注册中...').attr('disabled','disabled')
+		let createTime = new Date().toLocaleDateString()
 		$.ajax({
 			type:'post',
 			url:'/api/users/register',
 			data:{
 				username:this.username.val(),
-				password:this.password.val()
+				password:this.password.val(),
+				createTime
 			},
 			success:$.proxy(this.registerRes,this)
 		})

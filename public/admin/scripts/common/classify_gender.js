@@ -26,7 +26,7 @@ $.extend(styles.prototype,{
 	},
 	//事件
 	bindEvents(){
-		$("#addtypes").on('click',this.addtypes.bind(this))
+		$("#addtypes").unbind().on('click',this.addtypes.bind(this))
 		$(".checkpro").on('click',this.checkpros.bind(this))
 		$('.back2gender').on('click',this.back2Gender.bind(this))
 		$('.delstyle').on('click',this.clickDelStyle.bind(this))
