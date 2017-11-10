@@ -3,6 +3,7 @@ const path = require('path');
 const apiRoute = require('./routes/api.js')
 const bodyParser = require('body-parser')
 const cookieSession = require('cookie-session')
+const ws = require('./socket/registerSocketServer.js');
 const app = express();
 //设置访问静态资源的路径
 app.use(express.static(path.join(__dirname,'public')))

@@ -6,6 +6,7 @@ $.extend(List.prototype,{
 	init(){
 		this.createdom();
 		this.bindEvents();
+		userSocket();
 	},
 	createdom(){
     var html = new EJS({url:'views/list.ejs'}).render({

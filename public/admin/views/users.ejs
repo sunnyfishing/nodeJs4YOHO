@@ -5,50 +5,79 @@
 </div>
 
 <div class="user_main">
-<div class="container">
-  <div class="row">
-    <form class="form-inline">
-     <div class="form-group ">
-       <label for="exampleInputName2">关键字:</label>
-       <input type="text" id='vital' class="form-control" id="exampleInputName2" placeholder="关键字">
-     </div>
-     <div class="form-group">
-       <div class='col-md-4'>
-         <select class="form-control" id='term'>
-           <option value='username'>用户名</option>
-           <option value='password'>密码</option>
-           <option value='phone'>手机号</option>
-           <option value='roles'>角色</option>
-         </select>
-       </div>
-     </div>
-     <div type="text" class="btn btn-default" id='search_btn'>搜索</div>
+    <form class="form-inline " id="formserach">
+      <div class="dropdown pageStyle">
+        每页显示
+        <button class="btn btn-default dropdown-toggle showPageSize" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <%= pageSize %>
+          <span class="caret"></span>
+        </button>
+        条数据
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="pageSize">
+          <% for (var i = 1;i<=totalPage;i++){ %>
+          <li style="display:<%= i==pageSize?'none':'list-item' %>"><a href="#" ><%= i %></a></li>
+          <% } %>
+        </ul>
+      </div>
+      <div class="">
+
+        <div class="form-group ">
+          <label for="exampleInputName2">关键字:</label>
+          <input type="text" id='vital' class="form-control" id="exampleInputName2" placeholder="关键字">
+        </div>
+        <div class="form-group">
+          <div class='col-md-4'>
+            <select class="form-control" id='term'>
+              <option value='username'>用户名</option>
+              <option value='password'>密码</option>
+              <option value='phone'>手机号</option>
+              <option value='roles'>角色</option>
+            </select>
+          </div>
+        </div>
+        <div type="text" class="btn btn-default" id='search_btn'>搜索</div>
+      </div>
  </form>
-  </div>
-</div>
 
 <hr>
 
-<table class='table table-hover table-striped'>
+<table class='table ' id="tableTit">
   <tr>
+    <th>id</th>
     <th>用户名</th>
     <th>密码</th>
     <th>手机号</th>
+    <th>注册时间</th>
     <th>角色</th>
+    <th>操作</th>
   </tr>
-  <% for(var i =0 ;i<result.length;i++){ %>
-  <tr>
-    <td><%= result[i].username %></td>
-    <td><%= result[i].password %></td>
-    <td><%= result[i].phone %></td>
-    <td><%= result[i].roles %></td>
-  </tr>
-  <% } %>
 </table>
+<div class="limBlo">
+  <table class='table table-hover table-striped' id='tableInfo'>
+    <% if(result.length!=0){for(var i =0 ;i<result.length;i++){ %>
+      <tr>
+        <td><%= result[i]._id %></td>
+        <td><%= result[i].username %></td>
+        <td><%= result[i].password %></td>
+        <td><%= result[i].phone %></td>
+        <td><%= result[i].createTime %></td>
+        <td><%= result[i].roles %></td>
+        <td>
+          <div class="btn btn-danger btn-sm">
+            删除
+          </div>
+        </td>
+      </tr>
+      <% } }else{%>
+        <tr id='noResult'><td colspan='6'>没有符合条件的数据~~</td></tr>
+        <% } %>
+    </table>
+</div>
 
-<nav aria-label="Page navigation">
+<nav aria-label="Page navigation" id='pageNum'>
+  <span id="pageNum_left">第<i><%= pageNo %></i>页 / 总共<i><%= pageCount %></i>页</span>
   <ul class="pagination" id="pageItems">
-    <li id="back">
+    <li id="back" >
       <a href="javascript:void(0);" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
@@ -63,5 +92,4 @@
     </li>
   </ul>
 </nav>
-
 </div>
