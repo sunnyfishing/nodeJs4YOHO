@@ -45,16 +45,30 @@ $.extend(Header.prototype,{
 		})
 	},
 	rerender(data){
+		if(data.data.state&&location.pathname=='/admin/admin.html'){
+			var html = new EJS({url:'views/header.ejs'}).render({
+				username:data.data.username,
+				isLogin:data.data.state,
+				signUp:false
+			})
+			this.con.prepend(html);
+			this.signout = $('.yessignout')
+			this.signout.on('click',$.proxy(this.signoutuser,this))
+		}
+		if(location.pathname!='/admin/admin.html'&&!(data.data.state)){
+			var html = new EJS({url:'views/header.ejs'}).render({
+				username:data.data.username,
+				isLogin:data.data.state,
+				signUp:false
+			})
+			this.con.prepend(html);
+			new signIn();
+		}
 		if(data.data.state&&location.pathname!='/admin/admin.html'){
 			location.href='/admin/admin.html'
 		}
-		var html = new EJS({url:'views/header.ejs'}).render({
-			username:data.data.username,
-			isLogin:data.data.state,
-			signUp:false
-		})
-		this.con.prepend(html);
-		this.signout = $('.yessignout')
-		this.signout.on('click',$.proxy(this.signoutuser,this))
+		if(location.pathname=='/admin/admin.html'&&!(data.data.state)){
+			location.href='/admin/index.html'
+		}
 	}
 });

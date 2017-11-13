@@ -4,12 +4,8 @@ var Page = function(){
 $.extend(Page.prototype,{
 	init(){
 		this.createheader();
-		this.createsignIn();
 	},
 	createheader(){
 		new Header();
-	},
-	createsignIn(){
-		new signIn();
 	}
 });
