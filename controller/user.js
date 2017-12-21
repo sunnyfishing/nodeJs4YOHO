@@ -3,7 +3,7 @@ const User = require('../model/user.js')
 const { getParam } = require('../utils/utils.js')
 const async=require('async')
 
-var pageSize=3
+var pageSize=1
 const register = function(req,res){
 	const {username,password,roles,phone,createTime} = req.body;
 	/*bcrypt.hash(password, 10)

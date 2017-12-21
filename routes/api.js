@@ -37,4 +37,9 @@ router.post('/goods_list/add',upload.single('default_images'),goodslistControlle
 router.post('/goods_list/update',upload.single('default_images'),goodslistController.update)
 router.post('/goods_list/removeone',goodslistController.removeone)
 
+router.get('/test',(req,res,next)=>{
+  console.log("hdskfhdfjahjksdfh")
+  res.json({state:'成功了！'})
+})
+
  module.exports=router

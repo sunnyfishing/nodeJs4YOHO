@@ -17,7 +17,7 @@ $.extend(Users.prototype,{
 		this.con.find('.section').children().remove()
     var html = new EJS({url:'/admin/views/users.ejs'}).render({
       result:re.result,
-      pageNo:re.pageNo,
+      pageNo:!!re.pageNo?re.pageNo:1,
       pageCount:re.pageCount,
 			pageSize:!!this.pageSize?this.pageSize:1,
 			totalPage:this.totalPage
