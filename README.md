@@ -11,3 +11,4 @@ clone到本地之后，使用
  7. 执行： mongod --dbpath ...mongoDB\data\db（刚刚新建的data和db目录） eg：F:\Program\mongoDB\bin>mongod --dbpath f:\Program\mongoDB\data\db
  8. 新建命令行同6、7在 mongoDB\bin 目录下执行 mongo.exe  eg: F:\Program\mongoDB\bin>mongo.exe
  9. 在项目根目录下执行：npm start 显示连接数据库成功。
+10. 链接方式：端口在app.js中 为5000。通过 localhost:5000/admin/进行链接
